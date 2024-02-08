@@ -21,8 +21,10 @@ function FormAmount(props) {
     const amt = useRef();
     const time = useRef();
     const onClick = () =>{
+        if(!amt.current.value) return;
         localStorage.setItem('amount', +amt.current.value)
         localStorage.setItem('time', +time.current.value)
+        localStorage.removeItem('history')
         props.setAmount(false)
     }
   return (

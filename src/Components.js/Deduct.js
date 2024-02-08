@@ -21,6 +21,7 @@ function Deduct(props) {
     const amt = useRef();
     const reason = useRef();
     const onClick = () =>{
+        if(!amt.current.value || !reason.current.value) return;
         var his = localStorage.getItem('history')!==null ? JSON.parse(localStorage.getItem('history')) : []
         his.push({'amount': +amt.current.value, 'reason': reason.current.value})
         localStorage.setItem('history', JSON.stringify(his))
