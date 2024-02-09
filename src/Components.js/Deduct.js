@@ -23,7 +23,8 @@ function Deduct(props) {
     const onClick = () =>{
         if(!amt.current.value || !reason.current.value) return;
         var his = localStorage.getItem('history')!==null ? JSON.parse(localStorage.getItem('history')) : []
-        his.push({'amount': +amt.current.value, 'reason': reason.current.value})
+        const currentDate = new Date()
+        his.push({'amount': +amt.current.value, 'reason': reason.current.value, 'date': `${currentDate.getDate()}/${currentDate.getMonth()+1}/${currentDate.getFullYear()}`})
         localStorage.setItem('history', JSON.stringify(his))
         localStorage.setItem('amount', +localStorage.getItem('amount')-amt.current.value)
         props.setUpdateHistory(!props.updateHistory)

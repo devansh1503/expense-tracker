@@ -15,7 +15,7 @@ function Record(props) {
   return (
     <div style={{margin:'30px'}}>
         <h1 style={{fontSize:'30px', color:'white'}}>History</h1>
-        {his ? his.map((item)=>{
+        {his ? his.slice(his.length-4, his.length).map((item)=>{
             return <div style={{display:'flex', backgroundColor:'green', alignItems:'center', padding:'10px', margin:'10px'}}>
                 <img src='https://static.vecteezy.com/system/resources/previews/009/267/401/original/minus-sign-icon-free-png.png' 
                 style={{width:'40px', height:'40px'}}></img>
