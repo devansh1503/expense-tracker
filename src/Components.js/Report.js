@@ -1,4 +1,43 @@
 import React, { useEffect, useState } from 'react'
+import * as XLSX from 'xlsx'
+
+function ExportToExcel({data, sheetName, fileName, btnText}){
+  const exportToExcel = () =>{
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+    const wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' })
+
+    const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = fileName + '.xlsx';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+  const s2ab = (s) => {
+    const buf = new ArrayBuffer(s.length);
+    const view = new Uint8Array(buf);
+    for (let i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+    return buf;
+  };
+  const btnStyle = {
+    fontSize:'25px',
+    background:'#4308E5',
+    color:'white',
+    border:'none',
+    padding:'15px',
+    borderRadius:'25px'
+  }
+  return (
+    <div>
+      <button style={btnStyle} onClick={exportToExcel}>
+        {btnText}
+      </button>
+    </div>
+  )
+}
 
 function Report(props) {
     const [data, setData] = useState([])
@@ -44,21 +83,26 @@ function Report(props) {
     const outerStyle = {
       display:'flex',
       color:'white',
-      marginTop:'15px'
+      marginTop:'15px',
+      justifyContent:'center',
+      alignItems:'center'
     }
     const valueStyle = {
       marginLeft:'25px',
       color:'orange'
     }
   return (
-    <div>
+    <div style={{margin:'30px'}}>
       <div style={outerStyle}>
         <h1>Most Common Expense-</h1>
         <h1 style={valueStyle}>Rs.{maxamt}</h1>
       </div>
       <div style={outerStyle}>
         <h1>Average Daily-</h1>
-        <h1 style={valueStyle}>Rs.{avg}</h1>
+        <h1 style={valueStyle}>Rs.{Math.round(avg)}</h1>
+      </div>
+      <div style={{marginTop:'25px'}}>
+        <ExportToExcel data={JSON.parse(localStorage.getItem('history'))} sheetName="Sheet 1" fileName="history_of_expenses" btnText="Download History"/>
       </div>
     </div>
   )
