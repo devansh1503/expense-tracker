@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import * as XLSX from 'xlsx'
 
-function ExportToExcel({data, sheetName, fileName, btnText}){
+function ExportToExcel({data, data2, fileName, btnText}){
   const exportToExcel = () =>{
     const ws = XLSX.utils.json_to_sheet(data);
+    const ws2 = XLSX.utils.json_to_sheet(data2);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+    XLSX.utils.book_append_sheet(wb, ws, "History");
+    XLSX.utils.book_append_sheet(wb, ws2, "Daily Expense");
     const wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' })
 
     const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
@@ -62,13 +64,13 @@ function Report(props) {
     useEffect(()=>{
       const history = JSON.parse(localStorage.getItem('history'))
       if(!history) return
-      const daily = {}
+      const daily = []
       var date = ""
       var sum = 0
       var totalsum = 0
       history.forEach(element => {
         if(element.date !== date){
-          daily[element.date] = sum
+          daily.push({"date":date, "amount":sum})
           totalsum += sum
           date = element.date
           sum = 0
@@ -76,8 +78,9 @@ function Report(props) {
         sum += (+element.amount)
       })
       totalsum += sum
-      daily[date] = sum
-      setAvg(totalsum/Object.keys(daily).length)
+      daily.push({"date":date, "amount":sum})
+      setData(daily)
+      setAvg(totalsum/daily.length)
     },[props.updateHistory])
 
     const outerStyle = {
@@ -102,7 +105,7 @@ function Report(props) {
         <h1 style={valueStyle}>Rs.{Math.round(avg)}</h1>
       </div>
       <div style={{marginTop:'25px'}}>
-        <ExportToExcel data={JSON.parse(localStorage.getItem('history'))} sheetName="Sheet 1" fileName="history_of_expenses" btnText="Download History"/>
+        <ExportToExcel data={JSON.parse(localStorage.getItem('history'))} data2={data} fileName="history_of_expenses" btnText="Download History"/>
       </div>
     </div>
   )
