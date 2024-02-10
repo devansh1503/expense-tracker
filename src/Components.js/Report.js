@@ -104,6 +104,10 @@ function Report(props) {
         <h1>Average Daily-</h1>
         <h1 style={valueStyle}>Rs.{Math.round(avg)}</h1>
       </div>
+      <div style={outerStyle}>
+        <h1>Predicted Expense Monthly-</h1>
+        <h1 style={valueStyle}>Rs.{Math.round(avg)*30}</h1>
+      </div>
       <div style={{marginTop:'25px'}}>
         <ExportToExcel data={JSON.parse(localStorage.getItem('history'))} data2={data} fileName="history_of_expenses" btnText="Download History"/>
       </div>
