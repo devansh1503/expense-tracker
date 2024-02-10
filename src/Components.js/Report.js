@@ -80,7 +80,7 @@ function Report(props) {
       totalsum += sum
       daily.push({"date":date, "amount":sum})
       setData(daily)
-      setAvg(totalsum/daily.length)
+      setAvg(totalsum/(daily.length-1))
     },[props.updateHistory])
 
     const outerStyle = {
