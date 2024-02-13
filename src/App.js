@@ -9,11 +9,6 @@ import Report from './Components.js/Report';
 function App() {
   const [formamount, setAmount] = useState(false)
   const [updateHistory, setUpdateHistory] = useState(false)
-  useEffect(()=>{
-    localStorage.setItem('start_amount', 12331)
-    const d = new Date('2024-02-07')
-    localStorage.setItem('start_timestamp', d.getTime())
-  },[])
   
   return (
     <div className="App">
