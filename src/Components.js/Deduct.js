@@ -5,18 +5,22 @@ function Deduct(props) {
         width:'90%',
         background:'none',
         border:'none',
-        fontSize:'25px',
+        fontSize:'20px',
         margin:'20px',
-        borderBottom:'1px solid orange',
+        borderBottom:'1px solid #3f5efb',
         color:'white'
     }
     const btn = {
-        width:'80%',
-        fontSize:'25px',
+        fontSize:'20px',
+        fontWeight:'600',
+        width:'fit-content',
         margin:'20px',
-        backgroundColor:'orange',
+        color:'white',
+        backgroundImage:'linear-gradient(to right, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)',
         border:'none',
         padding: '10px',
+        paddingLeft:'20px',
+        paddingRight:'20px'
     }
     const amt = useRef();
     const reason = useRef();

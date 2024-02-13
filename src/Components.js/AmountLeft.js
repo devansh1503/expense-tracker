@@ -6,9 +6,9 @@ function AmountLeft(props) {
         setAmt(localStorage.getItem('amount'))
     },[props.updateHistory])
   return (
-    <div style={{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>
-        <img src='https://cdn-icons-png.flaticon.com/512/217/217853.png' style={{width:'60px'}}></img>
-        <h1 style={{fontSize:'60px', color:'white'}}>{amt}</h1>
+    <div style={{width:'100%',display:'flex', alignItems:'center', marginLeft:'30px'}}>
+        <img src='https://cdn3.iconfinder.com/data/icons/pretty-office-part-11-reflection-style/512/cash.png' style={{width:'40px'}}></img>
+        <h1 style={{fontSize:'40px', color:'white'}}>{amt}</h1>
     </div>
   )
 }
