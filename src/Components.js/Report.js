@@ -112,15 +112,15 @@ function Stats(props){
       </div>
       <div style={outerStyle}>
         <p>Predicted Expense Monthly-</p>
-        <p style={valueStyle}>Rs.{Math.round(avg)*+(localStorage.getItem('time'))}</p>
+        <p style={valueStyle}>Rs.{Math.round(Math.round(avg)*+(localStorage.getItem('time')))}</p>
       </div>
       <div style={outerStyle}>
         <p>Predicted Expense For Remaining Days-</p>
-        <p style={valueStyle}>Rs.{Math.round(avg)*(+localStorage.getItem('time')-daysLeft)}</p>
+        <p style={valueStyle}>Rs.{Math.round(Math.round(avg)*(+localStorage.getItem('time')-daysLeft))}</p>
       </div>
       <div style={outerStyle}>
         <p>Predicted Savings-</p>
-        <p style={valueStyle}>Rs.{(+localStorage.getItem('start_amount')) - Math.round(avg)*+(localStorage.getItem('time'))}</p>
+        <p style={valueStyle}>Rs.{Math.round((+localStorage.getItem('start_amount')) - Math.round(avg)*+(localStorage.getItem('time')))}</p>
       </div>
     </div>
   )
