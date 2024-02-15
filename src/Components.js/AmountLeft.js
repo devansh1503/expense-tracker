@@ -8,7 +8,7 @@ function AmountLeft(props) {
   return (
     <div style={{width:'100%',display:'flex', alignItems:'center', marginLeft:'30px'}}>
         <img src='https://cdn3.iconfinder.com/data/icons/pretty-office-part-11-reflection-style/512/cash.png' style={{width:'40px'}}></img>
-        <h1 style={{fontSize:'40px', color:'white'}}>{amt}</h1>
+        <h1 style={{fontSize:'40px', color:'white'}}>{Math.round(amt*100)/100}</h1>
     </div>
   )
 }
