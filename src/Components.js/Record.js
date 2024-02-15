@@ -24,7 +24,7 @@ function Record(props) {
                     <div>Rs.{item.amount}</div>
                     <div style={{color:'#fc466b'}}>{item.reason}</div>
                 </div>
-                <div style={{fontSize:'20px', color:'white'}}>{item.date}</div>
+                <div style={{fontSize:'17px', fontWeight:'600', color:'white'}}>{item.date}</div>
             </div>
         }): <div/>}
     </div>
